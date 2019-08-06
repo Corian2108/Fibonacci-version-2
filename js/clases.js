@@ -20,8 +20,13 @@ class Solver {
     }
 }
 
-//funciones
+//variables
 
+var tr = document.createElement("tr");
+var contadorColumna = 0;
+
+//funciones
+//generar
 function generar() {
     this.serie.push(this.primero);
     this.serie.push(this.segundo);
@@ -29,37 +34,37 @@ function generar() {
     calcularSerie(this.serie, this.maximo);
 }
 
-function calcularSerie(serie, tope) {
-
-    if (serie[serie.length - 2] + serie[serie.length - 1] < tope) {
+function calcularSerie(serie, contenedor) {
+    
+    if (serie[serie.length - 2] + serie[serie.length - 1] < contenedor) {
         nuevo = serie[serie.length - 2] + serie[serie.length - 1]
         serie.push(nuevo);
         console.log(nuevo);
-        return calcularSerie(serie, tope);
+        return calcularSerie(serie, contenedor);
     }
 }
 
-var tr = document.createElement("tr");
-var contadorColumna = 0;
-
-function mostrar() {
+//mostrar
+function mostrar(contenedor) {
     tr = document.createElement('tr');
     tablaDeDatos.appendChild(tr)
-    contador(0);
+    contador(0, contenedor);
 }
 
-function contador(inicio, tope) {
-    tope = fibonacci.serie.length;
-    if (inicio < tope) {
-        insertarColumna(inicio);
+function contador(inicio, contenedor) {
+    console.log(contenedor);
+    x= contenedor.length
+    console.log(x);
+    if (inicio < x) {
+        insertarColumna(inicio, contenedor);
         return contador(++inicio)
 
     }
 }
 
-function insertarColumna(item) {
+function insertarColumna(item, contenedor) {
     var td = document.createElement('td');
-    td.appendChild(document.createTextNode(fibonacci.serie[item]));
+    td.appendChild(document.createTextNode(contenedor[item]));
     tr.appendChild(td);
     contarColumna();
 }
@@ -73,13 +78,22 @@ function contarColumna() {
     }
 }
 
-function calculaMultiplo(serie, multiplos) {
-    //serie.forEach(esMultiplo(elemento))
-    /*multiplos.push(elemento);*/
+//calcular multiplo
+function calculaMultiplo(serie, opcion, ) {
+    //identifica qué calcular
+    if (opcion === "a") {//identifica pares
+        serie.forEach(esMultiplo(elemento, 2, 0))
+        this.multiplos.push(elemento)
+    } else {
+        if (opcion === "b") {//identifica impares
+            serie.forEach(esMultiplo(elemento, 2, 1))
+            this.multiplos.push(elemento)
+        }
+    }
 };
 
-function esPar(elemento) {
-    if (elemento % 2 === 0) {
+function esMultiplo(numero, divisor, resultado) {
+    if (numero % divisor === resultado) {
         return true
     }
-}
+};
