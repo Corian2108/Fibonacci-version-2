@@ -17,6 +17,7 @@ class Solver {
         this.generador = generar;
         this.mostrar = mostrar;
         this.calculaMultiplo = calculaMultiplo;
+        this.borrarTabla = borrarTabla;
     }
 }
 
@@ -35,7 +36,7 @@ function generar() {
 }
 
 function calcularSerie(serie, contenedor) {
-    
+
     if (serie[serie.length - 2] + serie[serie.length - 1] < contenedor) {
         nuevo = serie[serie.length - 2] + serie[serie.length - 1]
         serie.push(nuevo);
@@ -52,12 +53,10 @@ function mostrar(contenedor) {
 }
 
 function contador(inicio, contenedor) {
-    console.log(contenedor);
-    x= contenedor.length
-    console.log(x);
-    if (inicio < x) {
+    tope = contenedor.length
+    if (inicio < tope) {
         insertarColumna(inicio, contenedor);
-        return contador(++inicio)
+        return contador(++inicio, contenedor)
 
     }
 }
@@ -82,18 +81,33 @@ function contarColumna() {
 function calculaMultiplo(serie, opcion, ) {
     //identifica qué calcular
     if (opcion === "a") {//identifica pares
-        serie.forEach(esMultiplo(elemento, 2, 0))
-        this.multiplos.push(elemento)
+        serie.forEach(esPar)
     } else {
         if (opcion === "b") {//identifica impares
-            serie.forEach(esMultiplo(elemento, 2, 1))
-            this.multiplos.push(elemento)
+            serie.forEach(esImpar)
         }
     }
 };
 
-function esMultiplo(numero, divisor, resultado) {
-    if (numero % divisor === resultado) {
-        return true
+function esPar(elemento) {
+    if (elemento % 2 === 0) {
+        fibonacci.multiplos.push(elemento)
     }
 };
+
+function esImpar(elemento) {
+    if (elemento % 2 === 1) {
+        fibonacci.multiplos.push(elemento)
+    }
+};
+
+//borra la tabla
+function borrarTabla(inicio) {
+    tabla = document.getElementById("tablaDeDatos");
+    filas = tabla.getElementsByTagName("tr");
+
+    if (inicio > 1) {
+        tabla.removeChild(filass[inicio]);
+        return (--inicio);
+    }
+}
